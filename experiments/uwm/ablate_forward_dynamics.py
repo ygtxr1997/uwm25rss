@@ -36,8 +36,6 @@ def eval_one_epoch(config, data_loader, device, model):
     def decode_and_plot(images, nrows=2):
         images = model.obs_encoder.apply_vae(images, inverse=True)
         images = rearrange(images, "b v c t h w -> (b v t) c h w").clamp(0, 1)
-        if "libero" in config.dataset.name:
-            images = images.flip(2)
         images_grid = make_grid(images, nrows)
         return (
             (images_grid.cpu().numpy() * 255)
@@ -79,9 +77,6 @@ def eval_one_epoch(config, data_loader, device, model):
         # Plot predicted next observations
         next_obs_hat_forward = decode_and_plot(next_obs_hat_forward[:1])
         imageio.imwrite(f"{save_path}/{step}_next_obs_hat.png", next_obs_hat_forward)
-
-        # Save batch
-        # torch.save(batch, f"viz/{step}_batch.pt")
 
         step += 1
         if step == 15:
