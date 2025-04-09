@@ -121,26 +121,17 @@ class LIBEROEnvWrapper(RoboMimicEnvWrapper):
             "eye_in_hand_rgb": "robot0_eye_in_hand_image",
         }
 
-        from libero.libero import benchmark
-        from libero.libero.benchmark.libero_suite_task_map import libero_task_map
-
-        # Use initializaitions from the benchmark
-        task_suite_name, task_name = env.env.bddl_file_name.split("/")[-2:]
-        task_name = task_name.replace(".bddl", "")
-        benchmark_dict = benchmark.get_benchmark_dict()
-        task_suite = benchmark_dict[task_suite_name]()
-        task_id = libero_task_map[task_suite_name].index(task_name)
-        self.init_states = task_suite.get_task_init_states(task_id)
-        print(f"Task suite: {task_suite_name}, name: {task_name}, ID: {task_id}")
-
-    def seed(self, seed):
-        np.random.seed(seed)
-        self.env.set_init_state(self.init_states[seed])
-
     def reset_to_state(self, state):
-        self.env.seed(0)
+        self.seed(0)
+        self.reset()
         self.env.set_init_state(state)
-        return self.reset()
+
+        # Refresh obs buffer
+        self.obs_buffer.clear()
+        obs = self.env.env._get_observations()
+        for _ in range(self.obs_buffer.maxlen):
+            self.obs_buffer.append(obs)
+        return self._get_obs()
 
     def _is_success(self):
         return self.env.check_success()

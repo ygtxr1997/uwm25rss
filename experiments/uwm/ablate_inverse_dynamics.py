@@ -45,12 +45,10 @@ def eval_inverse_dynamics(
         demos = f["data"]
         for i in trange(len(demos)):
             demo = demos[f"demo_{i}"]
-
             obs = env.reset_to_state(demo["states"][0])
-            next_index = 1 + action_horizon
-            while next_index + obs_horizon <= len(demo["actions"]):
-                # done = False
-                # while not done:
+            next_index = action_horizon
+            done = False
+            while next_index + obs_horizon <= len(demo["actions"]) and not done:
                 next_obs = {
                     key: demo["obs"][key][next_index : next_index + obs_horizon]
                     for key in obs_keys
