@@ -1,6 +1,6 @@
 # Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets
 
-####  [[Website]](https://weirdlabuw.github.io/uwm/) [[Paper]](https://arxiv.org/abs/2504.02792) 
+####  [[Website]](https://weirdlabuw.github.io/uwm/) [[Paper]](https://arxiv.org/abs/2504.02792) [[Talk]](https://www.youtube.com/watch?v=WwPRxBbZ4kw)
 
 [Chuning Zhu<sup>1</sup>](https://homes.cs.washington.edu/~zchuning/), [Raymond Yu<sup>1</sup>](https://raymondyu5.github.io/), [Siyuan Feng<sup>2</sup>](https://www.cs.cmu.edu/~sfeng/), [Benjamin Burchfiel<sup>2</sup>](https://scholar.google.com/citations?user=eGoTK1YAAAAJ&hl=en), [Paarth Shah<sup>2</sup>](https://www.paarthshah.me/about), [Abhishek Gupta<sup>1</sup>](https://homes.cs.washington.edu/~abhgupta/)<br/>
 
@@ -69,10 +69,10 @@ We release the pretrained and cotrained DROID UWM checkpoints [here](https://dri
 If you find this code useful, please cite:
 
 ```
-@article{zhu2025uwm,
+@inproceedings{zhu2025uwm,
     author    = {Zhu, Chuning and Yu, Raymond and Feng, Siyuan and Burchfiel, Benjamin and Shah, Paarth and Gupta, Abhishek},
     title     = {Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets},
-    booktitle = {ArXiv Preprint},
+    booktitle = {Proceedings of Robotics: Science and Systems (RSS)},
     year      = {2025},
 }
 ```
